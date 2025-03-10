@@ -12,12 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.githubandroidlib.ui.theme.GitHubandroidlibTheme
+import com.pdf.pdfwriter.createPdfWithHeaderFooter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            createPdfWithHeaderFooter(this,"pdfS.pdf")
 
             GitHubandroidlibTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
