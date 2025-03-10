@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    id("maven-publish")
+
 }
 
 android {
@@ -23,6 +26,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -30,14 +34,39 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+  implementation("androidx.compose.ui:ui:1.7.8")
+  implementation("androidx.compose.material:material:1.7.8")
+}
+
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.YOUR_USERNAME"
+            artifactId = "pdfwriter"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/bard678/PDFWriter")
+
+            credentials {
+                username = "bard678"
+                password =   "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"         }
+        }
+    }
 }
