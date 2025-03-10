@@ -43,6 +43,8 @@ dependencies {
 
   implementation("androidx.compose.ui:ui:1.7.8")
   implementation("androidx.compose.material:material:1.7.8")
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation ("com.itextpdf:itext7-core:7.2.2")
 }
 
 
